@@ -1,0 +1,6 @@
+Waldo plan?
+
+get image
+clicking anywhere opens menu, click anywhere elese closes it
+use button for hitboxes? (normalize coords accross all screen sizes)
+validate click coordinates throughbackend 
