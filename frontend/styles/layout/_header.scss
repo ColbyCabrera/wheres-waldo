@@ -1,0 +1,25 @@
+header {
+  @media only screen and (max-width: 31.25em) {
+    padding-top: 1.5vw;
+  }
+
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 6.4rem;
+    line-height: 0.9;
+  }
+
+  .title-small {
+    font-size: 3rem;
+  }
+}
