@@ -3,4 +3,12 @@ Waldo plan?
 get image
 clicking anywhere opens menu, click anywhere elese closes it
 use button for hitboxes? (normalize coords accross all screen sizes)
-validate click coordinates throughbackend 
+validate click coordinates throughbackend
+REST api
+
+
+frontend: 
+create header
+select image section
+make image width scale height, if height of window resizes, use scrollbar
+cursor should be crosshair
