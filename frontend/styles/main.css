@@ -110,25 +110,6 @@ form div {
   margin-bottom: 1rem;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #000;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: lightcoral;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: coral;
-}
-
 .main-image {
   width: 100%;
 }
