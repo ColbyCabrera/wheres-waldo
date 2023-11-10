@@ -1,7 +1,8 @@
 function printMousePos(event) {
+  const header = document.getElementById("header");
   const defaultWidth = 500;
   let xCoord = event.pageX;
-  let yCoord = event.pageY - 87; // 87 is placeholder
+  let yCoord = event.pageY - (header.offsetHeight - 1); // subtract one for border
   let screenWidth = window.innerWidth;
   let screenHeight = window.innerHeight;
   
