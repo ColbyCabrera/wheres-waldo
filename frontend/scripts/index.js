@@ -4,15 +4,12 @@ function printMousePos(event) {
   let xCoord = event.pageX;
   let yCoord = event.pageY - (header.offsetHeight - 1); // subtract one for border
   let screenWidth = window.innerWidth;
-  let screenHeight = window.innerHeight;
-  
   const ratio = screenWidth / defaultWidth;
 
   xCoord = Math.floor((xCoord / ratio) / 25.0);
   yCoord = Math.floor((yCoord / ratio) / 25.0);
 
   console.log(xCoord + " " + yCoord)
-
 }
 
 
