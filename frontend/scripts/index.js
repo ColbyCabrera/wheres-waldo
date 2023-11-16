@@ -12,6 +12,10 @@ function printMousePos(event) {
   console.log(xCoord + " " + yCoord)
 }
 
+function toggleMenu(event) {
+  let menu = document.getElementById("dropdown-menu");
+  menu.classList.toggle("invisible");
+}
 
 /*
 step 1: get mouse coords from click
@@ -23,3 +27,4 @@ step 5: see if coords match given coords
 
 let image = document.getElementById("main-image")
 image.addEventListener("click", printMousePos);
+document.addEventListener("click", toggleMenu)

@@ -312,3 +312,14 @@ main h2 {
   align-self: flex-end;
   margin-top: 1rem;
 }
+
+#dropdown-menu {
+  background-color: #ccc;
+  padding: 0.8rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.invisible {
+  display: none;
+}
