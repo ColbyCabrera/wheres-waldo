@@ -15,6 +15,9 @@ function printMousePos(event) {
 function toggleMenu(event) {
   let menu = document.getElementById("dropdown-menu");
   menu.classList.toggle("invisible");
+  menu.style.top = event.pageY + "px";
+  menu.style.left = event.pageX + "px";
+  console.log("here");
 }
 
 /*
