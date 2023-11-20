@@ -17,7 +17,7 @@ function toggleMenu(event) {
   menu.classList.toggle("invisible");
   menu.style.top = event.pageY + "px";
   menu.style.left = event.pageX + "px";
-  console.log("here");
+
 }
 
 /*
