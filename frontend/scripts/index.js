@@ -6,10 +6,10 @@ function printMousePos(event) {
   let screenWidth = window.innerWidth;
   const ratio = screenWidth / defaultWidth;
 
-  xCoord = Math.floor((xCoord / ratio) / 25.0);
-  yCoord = Math.floor((yCoord / ratio) / 25.0);
+  xCoord = Math.floor(xCoord / ratio / 25.0);
+  yCoord = Math.floor(yCoord / ratio / 25.0);
 
-  console.log(xCoord + " " + yCoord)
+  console.log(xCoord + " " + yCoord);
 }
 
 function toggleMenu(event) {
@@ -17,7 +17,19 @@ function toggleMenu(event) {
   menu.classList.toggle("invisible");
   menu.style.top = event.pageY + "px";
   menu.style.left = event.pageX + "px";
+}
 
+async function getImage() {
+  try {
+    const response = await fetch("http://localhost:3000/images/", {
+      mode: "cors",
+    });
+    const blob = await response.blob();
+    const imageUrl = URL.createObjectURL(blob);
+    document.getElementById("main-image").src = imageUrl;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /*
@@ -28,6 +40,8 @@ step 4: divide coords by 25
 step 5: see if coords match given coords
 */
 
-let image = document.getElementById("main-image")
+let image = document.getElementById("main-image");
 image.addEventListener("click", printMousePos);
-document.addEventListener("click", toggleMenu)
+document.addEventListener("click", toggleMenu);
+
+getImage();
