@@ -5,10 +5,8 @@ const index_controller = require("../controllers/index");
 /* GET home page. */
 router.get('/', index_controller.index);
 
-router.get('/images', index_controller.images);
+router.get('/image/:id', index_controller.get_image);
 
-router.get('/images/:id', index_controller.get_image);
-
-router.get('/images/:id/targets', index_controller.get_targets);
+router.get('/image/:id/targets', index_controller.get_targets);
 
 module.exports = router;
