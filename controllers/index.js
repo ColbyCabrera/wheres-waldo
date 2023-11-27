@@ -4,6 +4,30 @@ const { body, validationResult } = require("express-validator");
 const session = require("express-session");
 const path = require("path");
 
+const db = {
+  image1: {
+    targets: {
+      1: [0,0],
+      2: [1,1], 
+      3: [2,2], 
+    }
+  },
+  image2: {
+    targets: {
+      1: [16,16],
+      2: [15,14], 
+      3: [14,14]
+    }
+  },
+  image3: {
+    targets: {
+      1: [6,6],
+      2: [5,4], 
+      3: [4,4],
+    }
+  }
+}
+
 exports.index = asyncHandler(async (req, res) => {
   res.json();
 });
@@ -28,5 +52,11 @@ exports.get_image = asyncHandler(async (req, res) => {
 });
 
 exports.get_targets = asyncHandler(async (req, res) => {
-  res.json("hi");
+  try {
+    const targets = db["image" + req.params.id].targets;
+    res.json(targets);
+  } catch(err) {
+    console.log(err);
+    res.status(400).json("Invalid image ID");
+  }
 });

@@ -17,6 +17,8 @@ function toggleMenu(event) {
   menu.classList.toggle("invisible");
   menu.style.top = event.pageY + "px";
   menu.style.left = event.pageX + "px";
+
+  // CHANGE THIS TO BE A DROPDOWN FROM TOP OF SCREEN
 }
 
 async function getImage() {
