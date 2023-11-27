@@ -21,7 +21,7 @@ function toggleMenu(event) {
 
 async function getImage() {
   try {
-    const response = await fetch("http://localhost:3000/image/1", {
+    const response = await fetch("http://localhost:3000/image/2", {
       mode: "cors",
     });
     const blob = await response.blob();
