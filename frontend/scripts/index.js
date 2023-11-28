@@ -7,7 +7,6 @@ function toggleMenu(event) {
   // CHANGE THIS TO BE A DROPDOWN FROM TOP OF SCREEN
 }
 
-
 // ADD ability to dynamically determine fetch correct data based on what option is clicked
 async function selectCharacter(event) {
   const header = document.getElementById("header");
