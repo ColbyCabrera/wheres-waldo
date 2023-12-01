@@ -1,10 +1,18 @@
-#dropdown-menu {
-    background-color: #ccc;
-    padding: 0.8rem;
-    width: fit-content;
-    position: absolute;
+[id="dropdown-menu"] {
+  background-color: white;
+  padding: 0.8rem;
+  height: 40rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  transition: all 0.2s;
 }
 
-.invisible {
-    display: none;
+body .invisible {
+  height: 0%;
+  padding: 0rem;
+  opacity: 0;
 }

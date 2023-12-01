@@ -1,31 +1,36 @@
 // Add dom cache?
 
+let xCoord;
+let yCoord;
+
+function updateCoords(event) {
+  const header = document.getElementById("header");
+  const defaultWidth = 500;
+  const screenWidth = window.innerWidth;
+  const ratio = screenWidth / defaultWidth;
+  xCoord = event.pageX;
+  yCoord = event.pageY - (header.offsetHeight - 1); // subtract one for border
+
+  xCoord = Math.floor(xCoord / ratio / 25.0);
+  yCoord = Math.floor(yCoord / ratio / 25.0);
+
+  console.log(xCoord);
+  console.log(yCoord);
+}
+
 function toggleMenu(event) {
   let menu = document.getElementById("dropdown-menu");
   menu.classList.toggle("invisible");
-  menu.style.top = event.pageY + "px";
-  menu.style.left = event.pageX + "px";
-
-  // CHANGE THIS TO BE A DROPDOWN FROM TOP OF SCREEN
 }
 
 async function selectCharacter(event) {
   const imageNumber = document.getElementById("main-image").dataset.imageNumber;
-  const header = document.getElementById("header");
   const id = event.target.id.slice(7);
-  const defaultWidth = 500;
-  let xCoord = event.pageX;
-  let yCoord = event.pageY - (header.offsetHeight - 1); // subtract one for border
-  const screenWidth = window.innerWidth;
-  const ratio = screenWidth / defaultWidth;
 
   // if id is not one of the options exit function
   if (isNaN(id)) {
     return;
   }
-
-  xCoord = Math.floor(xCoord / ratio / 25.0);
-  yCoord = Math.floor(yCoord / ratio / 25.0);
 
   try {
     const response = await fetch(
@@ -42,9 +47,6 @@ async function selectCharacter(event) {
     if (xCoord == correctX && yCoord == correctY) {
       console.log("SUCCESS!");
     }
-
-    console.log(xCoord);
-    console.log(yCoord);
   } catch (error) {
     console.log(error);
   }
@@ -69,7 +71,7 @@ async function getImage() {
 
 let image = document.getElementById("main-image");
 let menu = document.getElementById("dropdown-menu");
-//image.addEventListener("click", selectCharacter);
+image.addEventListener("click", updateCoords);
 menu.addEventListener("click", selectCharacter);
 document.addEventListener("click", toggleMenu);
 
