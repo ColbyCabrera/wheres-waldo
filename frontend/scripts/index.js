@@ -56,7 +56,7 @@ async function selectCharacter(event) {
     console.log(error);
   }
 
-  // toggleMenu(event);
+  // toggleMenu(event); //turn menu off after option selected
 }
 
 //update to dynamically get images based on user selection
