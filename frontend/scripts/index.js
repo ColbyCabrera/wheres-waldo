@@ -1,10 +1,20 @@
-// Add dom cache?
-
 let xCoord;
 let yCoord;
+const cache = cacheDom();
+
+function cacheDom() {
+  const menu = document.getElementById("dropdown-menu");
+  const image = document.getElementById("main-image");
+  const header = document.getElementById("header");
+
+  return {
+    menu,
+    image,
+    header,
+  };
+}
 
 function updateCoords(event) {
-  const header = document.getElementById("header");
   const defaultWidth = 500;
   const screenWidth = window.innerWidth;
   const ratio = screenWidth / defaultWidth;
@@ -18,13 +28,8 @@ function updateCoords(event) {
   console.log(yCoord);
 }
 
-function toggleMenu(event) {
-  let menu = document.getElementById("dropdown-menu");
-  menu.classList.toggle("invisible");
-}
-
 async function selectCharacter(event) {
-  const imageNumber = document.getElementById("main-image").dataset.imageNumber;
+  const imageNumber = cache.image.dataset.imageNumber;
   const id = event.target.id.slice(7);
 
   // if id is not one of the options exit function
@@ -50,29 +55,32 @@ async function selectCharacter(event) {
   } catch (error) {
     console.log(error);
   }
+
+  // toggleMenu(event);
 }
 
 //update to dynamically get images based on user selection
 async function getImage() {
   try {
-    const image = document.getElementById("main-image");
     const imageNumber = 2;
     const response = await fetch("http://localhost:3000/image/" + imageNumber, {
       mode: "cors",
     });
     const blob = await response.blob();
     const imageUrl = URL.createObjectURL(blob);
-    image.src = imageUrl;
-    image.dataset.imageNumber = imageNumber;
+    cache.image.src = imageUrl;
+    cache.image.dataset.imageNumber = imageNumber;
   } catch (error) {
     console.log(error);
   }
 }
 
-let image = document.getElementById("main-image");
-let menu = document.getElementById("dropdown-menu");
-image.addEventListener("click", updateCoords);
-menu.addEventListener("click", selectCharacter);
-document.addEventListener("click", toggleMenu);
+function toggleMenu(event) {
+  cache.menu.classList.toggle("invisible");
+}
+
+cache.image.addEventListener("click", updateCoords);
+cache.menu.addEventListener("click", selectCharacter);
+cache.image.addEventListener("click", toggleMenu);
 
 getImage();

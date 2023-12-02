@@ -9,6 +9,11 @@
   display: flex;
   justify-content: space-around;
   transition: all 0.2s;
+  box-shadow: 0 6px 20px rgba(50, 10, 10, 0.4);
+
+  p:hover {
+    text-decoration: underline;
+  }
 }
 
 body .invisible {
