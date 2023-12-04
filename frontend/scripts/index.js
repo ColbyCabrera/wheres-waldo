@@ -6,11 +6,13 @@ function cacheDom() {
   const menu = document.getElementById("dropdown-menu");
   const image = document.getElementById("main-image");
   const header = document.getElementById("header");
+  const navItems = Array.from(document.getElementsByClassName("nav-item"));
 
   return {
     menu,
     image,
     header,
+    navItems,
   };
 }
 
@@ -60,9 +62,13 @@ async function selectCharacter(event) {
 }
 
 //update to dynamically get images based on user selection
-async function getImage() {
+async function getImage(event) {
   try {
-    const imageNumber = 2;
+    let imageNumber;
+
+    if (event.target) imageNumber = event.target.dataset.imageNumber;
+    else imageNumber = 1;
+
     const response = await fetch("http://localhost:3000/image/" + imageNumber, {
       mode: "cors",
     });
@@ -82,5 +88,8 @@ function toggleMenu(event) {
 cache.image.addEventListener("click", updateCoords);
 cache.menu.addEventListener("click", selectCharacter);
 cache.image.addEventListener("click", toggleMenu);
+cache.navItems.forEach((navItem) => {
+  navItem.addEventListener("click", getImage);
+});
 
-getImage();
+getImage("1");

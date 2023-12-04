@@ -27,6 +27,8 @@ header {
 
       img {
         height: 15rem;
+        margin-top: 1.4rem;
+        border-radius: 10px;
       }
     }
 
@@ -37,7 +39,16 @@ header {
       img {
         transition: all 0.5s;
         height: 0px;
+
       }
+    }
+
+    p:hover {
+      text-decoration: underline;
+    }
+
+    img:hover {
+      transform: scale(1.05);
     }
   }
 
