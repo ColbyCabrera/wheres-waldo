@@ -38,4 +38,12 @@ body .invisible {
   height: 0%;
   padding: 0rem;
   opacity: 0;
+
+  img {
+    height: 1px;
+  }
+
+  p {
+    display: none;
+  }
 }

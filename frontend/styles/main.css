@@ -21,7 +21,6 @@
 
 header {
   width: 100%;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   border-bottom: 1px dashed #bbb;
@@ -30,6 +29,34 @@ header {
   header {
     padding-top: 1.5vw;
   }
+}
+header nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  padding-right: 5rem;
+  transition: all 0.5s;
+}
+header nav div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  transition: all 0.3s;
+}
+header nav:hover > div {
+  width: 50%;
+}
+header nav:hover > div img {
+  height: 15rem;
+}
+header nav .nav-item {
+  display: flex;
+  flex-direction: column;
+}
+header nav .nav-item img {
+  transition: all 0.5s;
+  height: 0px;
 }
 header .title {
   font-size: 3.6rem;
@@ -290,4 +317,10 @@ body .invisible {
   height: 0%;
   padding: 0rem;
   opacity: 0;
+}
+body .invisible img {
+  height: 1px;
+}
+body .invisible p {
+  display: none;
 }
