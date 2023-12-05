@@ -7,26 +7,26 @@ const path = require("path");
 const db = {
   image1: {
     targets: {
-      1: [0,0],
-      2: [1,1], 
-      3: [2,2], 
-    }
+      1: [1, 8, 2, 8],
+      2: [11, 9],
+      3: [2, 2],
+    },
   },
   image2: {
     targets: {
-      1: [5,10],
-      2: [15,14], 
-      3: [14,14]
-    }
+      1: [5, 10],
+      2: [15, 14],
+      3: [14, 14],
+    },
   },
   image3: {
     targets: {
-      1: [6,6],
-      2: [5,4], 
-      3: [4,4],
-    }
-  }
-}
+      1: [6, 6],
+      2: [5, 4],
+      3: [4, 4],
+    },
+  },
+};
 
 exports.index = asyncHandler(async (req, res) => {
   res.json();
@@ -55,7 +55,7 @@ exports.get_targets = asyncHandler(async (req, res) => {
   try {
     const targets = db["image" + req.params.id].targets;
     res.json(targets);
-  } catch(err) {
+  } catch (err) {
     console.log(err);
     res.status(400).json("Invalid image ID");
   }

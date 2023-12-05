@@ -48,11 +48,16 @@ async function selectCharacter(event) {
     );
 
     let data = await response.json();
-    let correctX = data[id][0];
-    let correctY = data[id][1];
+    let correctX;
+    let correctY;
 
-    if (xCoord == correctX && yCoord == correctY) {
-      console.log("SUCCESS!");
+    // Check all possible coordinates for target
+    for (let i = 0; i < data[id].length; i += 2) {
+      correctX = data[id][i];
+      correctY = data[id][i + 1];
+      if (xCoord == correctX && yCoord == correctY) {
+        console.log("SUCCESS!");
+      }
     }
   } catch (error) {
     console.log(error);
