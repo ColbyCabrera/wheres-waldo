@@ -39,7 +39,7 @@ exports.get_image = asyncHandler(async (req, res) => {
       imagePath += "1.jpg";
       break;
     case "2":
-      imagePath += "2.webp";
+      imagePath += "2.jpg";
       break;
     case "3":
       imagePath += "3.jpg";

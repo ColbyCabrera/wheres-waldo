@@ -7,12 +7,14 @@ function cacheDom() {
   const image = document.getElementById("main-image");
   const header = document.getElementById("header");
   const navItems = Array.from(document.getElementsByClassName("nav-item"));
+  const dropdownImages = Array.from(document.getElementsByClassName("dropdown-image"));
 
   return {
     menu,
     image,
     header,
     navItems,
+    dropdownImages,
   };
 }
 
@@ -82,6 +84,10 @@ async function getImage(event) {
     const imageUrl = URL.createObjectURL(blob);
     cache.image.src = imageUrl;
     cache.image.dataset.imageNumber = imageNumber;
+    cache.dropdownImages.forEach((image, index) => {
+      image.src = "./images/image" + imageNumber + "target" + (index + 1) +  ".JPG";
+      console.log(image.src);
+    });
   } catch (error) {
     console.log(error);
   }
