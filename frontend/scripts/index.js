@@ -57,6 +57,7 @@ async function selectCharacter(event) {
       correctY = data[id][i + 1];
       if (xCoord == correctX && yCoord == correctY) {
         console.log("SUCCESS!");
+        toggleMenu(event);
       }
     }
   } catch (error) {
