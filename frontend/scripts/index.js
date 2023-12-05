@@ -7,7 +7,9 @@ function cacheDom() {
   const image = document.getElementById("main-image");
   const header = document.getElementById("header");
   const navItems = Array.from(document.getElementsByClassName("nav-item"));
-  const dropdownImages = Array.from(document.getElementsByClassName("dropdown-image"));
+  const dropdownImages = Array.from(
+    document.getElementsByClassName("dropdown-image")
+  );
 
   return {
     menu,
@@ -22,6 +24,7 @@ function updateCoords(event) {
   const defaultWidth = 500;
   const screenWidth = window.innerWidth;
   const ratio = screenWidth / defaultWidth;
+
   xCoord = event.pageX;
   yCoord = event.pageY - (header.offsetHeight - 1); // subtract one for border
 
@@ -34,7 +37,7 @@ function updateCoords(event) {
 
 async function selectCharacter(event) {
   const imageNumber = cache.image.dataset.imageNumber;
-  const id = event.target.id.slice(7);
+  const id = event.target.dataset.targetId;
 
   // if id is not one of the options exit function
   if (isNaN(id)) {
@@ -85,8 +88,8 @@ async function getImage(event) {
     cache.image.src = imageUrl;
     cache.image.dataset.imageNumber = imageNumber;
     cache.dropdownImages.forEach((image, index) => {
-      image.src = "./images/image" + imageNumber + "target" + (index + 1) +  ".JPG";
-      console.log(image.src);
+      image.src =
+        "./images/image" + imageNumber + "target" + (index + 1) + ".JPG";
     });
   } catch (error) {
     console.log(error);
