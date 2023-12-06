@@ -85,7 +85,7 @@ async function selectCharacter(event) {
 
 //update to dynamically get images based on user selection
 // CHANGE TO SWITCH IMAGE
-async function getImage(event) {
+async function switchImage(event) {
   try {
     let imageNumber;
 
@@ -122,10 +122,10 @@ cache.image.addEventListener("click", updateCoords);
 cache.menu.addEventListener("click", selectCharacter);
 cache.image.addEventListener("click", toggleMenu);
 cache.navItems.forEach((navItem) => {
-  navItem.addEventListener("click", getImage);
+  navItem.addEventListener("click", switchImage);
 });
 
-getImage("1");
+switchImage("1");
 
 /* function toggleMenu(event) {
   let menu = document.getElementById("dropdown-menu");
