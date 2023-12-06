@@ -326,9 +326,17 @@ body .invisible {
   padding: 0rem;
   opacity: 0;
 }
-body .invisible img {
-  height: 1px;
-}
 body .invisible p {
+  display: none;
+}
+
+.location-marker {
+  position: absolute;
+  height: 8rem;
+  top: 0;
+  left: 0;
+}
+
+.marker-invisible {
   display: none;
 }

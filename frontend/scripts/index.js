@@ -1,5 +1,5 @@
-let xCoord;
-let yCoord;
+let xPos, yPos, xCoord, yCoord;
+
 const cache = cacheDom();
 
 function cacheDom() {
@@ -11,12 +11,17 @@ function cacheDom() {
     document.getElementsByClassName("dropdown-image")
   );
 
+  const markers = Array.from(
+    document.getElementsByClassName("location-marker")
+  );
+
   return {
     menu,
     image,
     header,
     navItems,
     dropdownImages,
+    markers,
   };
 }
 
@@ -24,12 +29,11 @@ function updateCoords(event) {
   const defaultWidth = 500;
   const screenWidth = window.innerWidth;
   const ratio = screenWidth / defaultWidth;
+  xPos = event.pageX;
+  yPos = event.pageY - (header.offsetHeight - 1); // subtract one for border
 
-  xCoord = event.pageX;
-  yCoord = event.pageY - (header.offsetHeight - 1); // subtract one for border
-
-  xCoord = Math.floor(xCoord / ratio / 25.0);
-  yCoord = Math.floor(yCoord / ratio / 25.0);
+  xCoord = Math.floor(xPos / ratio / 25.0);
+  yCoord = Math.floor(yPos / ratio / 25.0);
 
   console.log(xCoord);
   console.log(yCoord);
@@ -38,6 +42,7 @@ function updateCoords(event) {
 async function selectCharacter(event) {
   const imageNumber = cache.image.dataset.imageNumber;
   const id = event.target.dataset.targetId;
+  let marker = cache.markers[id - 1];
 
   // if id is not one of the options exit function
   if (isNaN(id)) {
@@ -63,6 +68,13 @@ async function selectCharacter(event) {
       if (xCoord == correctX && yCoord == correctY) {
         console.log("SUCCESS!");
         toggleMenu(event);
+
+        console.log(marker);
+        marker.classList.toggle("marker-invisible");
+        marker.style.top = yPos + "px";
+        marker.style.left = (xPos - marker.offsetHeight / 2) + "px";
+        console.log(xPos);
+        console.log(yPos);
       }
     }
   } catch (error) {
@@ -73,6 +85,7 @@ async function selectCharacter(event) {
 }
 
 //update to dynamically get images based on user selection
+// CHANGE TO SWITCH IMAGE
 async function getImage(event) {
   try {
     let imageNumber;
@@ -91,6 +104,10 @@ async function getImage(event) {
       image.src =
         "./images/image" + imageNumber + "target" + (index + 1) + ".JPG";
     });
+
+    cache.markers.forEach((marker, index) => {
+      marker.classList.add("marker-invisible");
+    });
   } catch (error) {
     console.log(error);
   }
@@ -108,3 +125,11 @@ cache.navItems.forEach((navItem) => {
 });
 
 getImage("1");
+
+/* function toggleMenu(event) {
+  let menu = document.getElementById("dropdown-menu");
+  menu.classList.toggle("invisible");
+  menu.style.top = event.pageY + "px";
+  menu.style.left = event.pageX + "px";
+}
+*/
