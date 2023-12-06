@@ -84,7 +84,6 @@ async function selectCharacter(event) {
 }
 
 //update to dynamically get images based on user selection
-// CHANGE TO SWITCH IMAGE
 async function switchImage(event) {
   try {
     let imageNumber;
