@@ -11,6 +11,8 @@ function cacheDom() {
     document.getElementsByClassName("dropdown-image")
   );
 
+  const dropdownItems = Array.from(document.getElementsByClassName("item"));
+
   const markers = Array.from(
     document.getElementsByClassName("location-marker")
   );
@@ -21,6 +23,7 @@ function cacheDom() {
     header,
     navItems,
     dropdownImages,
+    dropdownItems,
     markers,
   };
 }
@@ -66,15 +69,11 @@ async function selectCharacter(event) {
       correctX = data[id][i];
       correctY = data[id][i + 1];
       if (xCoord == correctX && yCoord == correctY) {
-        console.log("SUCCESS!");
         toggleMenu(event);
-
-        console.log(marker);
         marker.classList.toggle("marker-invisible");
         marker.style.top = yPos + "px";
-        marker.style.left = (xPos - marker.offsetHeight / 2) + "px";
-        console.log(xPos);
-        console.log(yPos);
+        marker.style.left = xPos - marker.offsetHeight / 2 + "px";
+        cache.dropdownItems[id - 1].style.opacity = 0.5;
       }
     }
   } catch (error) {
@@ -104,8 +103,10 @@ async function getImage(event) {
       image.src =
         "./images/image" + imageNumber + "target" + (index + 1) + ".JPG";
     });
-
-    cache.markers.forEach((marker, index) => {
+    cache.dropdownItems.forEach((item) => {
+      item.style.opacity = 1;
+    });
+    cache.markers.forEach((marker) => {
       marker.classList.add("marker-invisible");
     });
   } catch (error) {
