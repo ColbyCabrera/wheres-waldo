@@ -69,9 +69,6 @@ function updateCoords(event) {
 
   xCoord = Math.floor(xPos / ratio / 25.0);
   yCoord = Math.floor(yPos / ratio / 25.0);
-
-  //console.log(xCoord);
-  //console.log(yCoord);
 }
 
 async function selectCharacter(event) {
