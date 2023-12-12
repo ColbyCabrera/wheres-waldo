@@ -36,6 +36,7 @@ function timerFactory() {
 
   clearTimer = () => {
     clearInterval(intervalId);
+    cache.timerText.textContent = 0;
   };
 
   startTimer = () => {
