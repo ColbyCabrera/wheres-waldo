@@ -36,7 +36,7 @@ function timerFactory() {
 
   clearTimer = () => {
     clearInterval(intervalId);
-  }
+  };
 
   startTimer = () => {
     clearTimer();
@@ -53,11 +53,10 @@ function timerFactory() {
     }, 1000);
   };
 
-
   return {
     startTimer,
     clearTimer,
-  }
+  };
 }
 
 function updateCoords(event) {
