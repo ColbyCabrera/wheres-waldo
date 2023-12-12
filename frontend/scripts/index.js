@@ -1,11 +1,13 @@
 let xPos, yPos, xCoord, yCoord;
 
 const cache = cacheDom();
+const timer = timerFactory();
 
 function cacheDom() {
   const menu = document.getElementById("dropdown-menu");
   const image = document.getElementById("main-image");
   const header = document.getElementById("header");
+  const timerText = document.getElementById("timer");
   const navItems = Array.from(document.getElementsByClassName("nav-item"));
   const dropdownImages = Array.from(
     document.getElementsByClassName("dropdown-image")
@@ -25,7 +27,37 @@ function cacheDom() {
     dropdownImages,
     dropdownItems,
     markers,
+    timerText,
   };
+}
+
+function timerFactory() {
+  let intervalId;
+
+  clearTimer = () => {
+    clearInterval(intervalId);
+  }
+
+  startTimer = () => {
+    clearTimer();
+    let time = 0;
+    intervalId = setInterval(() => {
+      if (allFound()) {
+        clearInterval(intervalId);
+        cache.timerText.textContent = "Your time: " + time;
+        intervalId = null;
+      } else {
+        time++;
+        cache.timerText.textContent = time;
+      }
+    }, 1000);
+  };
+
+
+  return {
+    startTimer,
+    clearTimer,
+  }
 }
 
 function updateCoords(event) {
@@ -38,8 +70,8 @@ function updateCoords(event) {
   xCoord = Math.floor(xPos / ratio / 25.0);
   yCoord = Math.floor(yPos / ratio / 25.0);
 
-  console.log(xCoord);
-  console.log(yCoord);
+  //console.log(xCoord);
+  //console.log(yCoord);
 }
 
 async function selectCharacter(event) {
@@ -108,15 +140,28 @@ async function switchImage(event) {
     cache.markers.forEach((marker) => {
       marker.classList.add("marker-invisible");
     });
+    timer.startTimer();
   } catch (error) {
     console.log(error);
   }
+}
+
+function allFound() {
+  let found = true;
+  cache.dropdownItems.forEach((item) => {
+    if (item.style.opacity == 1) {
+      found = false;
+    }
+  });
+
+  return found;
 }
 
 function toggleMenu(event) {
   cache.menu.classList.toggle("invisible");
 }
 
+document.addEventListener("DOMContentLoaded", timer.startTimer());
 cache.image.addEventListener("click", updateCoords);
 cache.menu.addEventListener("click", selectCharacter);
 cache.image.addEventListener("click", toggleMenu);

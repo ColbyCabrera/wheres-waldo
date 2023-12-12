@@ -79,6 +79,10 @@ header h1 {
 header .title-small {
   font-size: 3rem;
 }
+header #timer {
+  font-size: 3.2rem;
+  text-decoration: none;
+}
 
 * {
   padding: 0;
